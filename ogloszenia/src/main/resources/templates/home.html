@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lab 10</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h2>Dane producenta</h2>
+        <div th:each="producent : ${producent}">
+        <p th:text="${producent.id}"/>
+        <p th:text="${producent.name}"/>
+        </div>
+        <h2>Dane modelu</h2>
+        <div th:each="model : ${model}">
+        <p th:text="${model.id}"/>
+        <p th:text="${model.name}"/>
+        </div>
+    </body>
+</html>
