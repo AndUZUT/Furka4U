@@ -1,6 +1,6 @@
+
 package wizut.tpsi.ogloszenia.jpa;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "car_manufacturer")
-public class CarManufacturer implements Serializable  {
+@Table(name = "fuel_type")
+public class FuelType {
     
     @Id
     @GeneratedValue
@@ -19,22 +19,23 @@ public class CarManufacturer implements Serializable  {
     
     @Size(max = 30)
     @Column(name = "name")
-    private String name;    
-   
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
+    private String name;
+    
+    public void setId(Integer id){
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    
 }
