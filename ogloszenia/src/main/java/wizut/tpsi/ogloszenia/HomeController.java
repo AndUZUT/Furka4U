@@ -39,7 +39,7 @@ public class HomeController {
     @RequestMapping("/offersList")
     public String home2(Model model, OfferFilter offerFilter) throws SQLException{    
         List<CarManufacturer> carManufacturers = offersService.getCarManufacturers();
-        List<CarModel> carModels = offersService.getCarModels();
+        List<CarModel> carModels = new ArrayList<CarModel>();
         List<FuelType> fuelTypes = offersService.getFuelTypes();
 
         List<Offer> offers;
@@ -59,14 +59,19 @@ public class HomeController {
 
         */
         //Zadanie 4: Furka4U 3
-        if(offerFilter.getModelId() == null && offerFilter.getManufacturerId() == null && offerFilter.getFuelTypeId() == null && offerFilter.getYearMin() == null && offerFilter.getYearMax() == null)
+        if(offerFilter.getModelId() != null && offerFilter.getManufacturerId() != null)
         {
-            offers = offersService.getOffers();
+            carModels = offersService.getCarModelsByManufacturer(offerFilter.getManufacturerId());
+        }
+        else if(offerFilter.getManufacturerId() != null && offerFilter.getModelId() == null) {
+            carModels = offersService.getCarModelsByManufacturer(offerFilter.getManufacturerId());
         }
         else
         {
-            offers = offersService.getOffers(offerFilter);
+            offerFilter.setModelId(null);
         }
+
+        offers = offersService.getOffers(offerFilter);
         model.addAttribute("carManufacturers", carManufacturers);
         model.addAttribute("carModels", carModels);
         model.addAttribute("fuelTypes", fuelTypes);
